@@ -2,7 +2,7 @@
     Core logic/payment flow for this comes from here:
     https://stripe.com/docs/payments/accept-a-payment
 
-    CSS from here:
+    CSS from here: 
     https://stripe.com/docs/stripe-js
 */
 
@@ -10,7 +10,6 @@ var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 var clientSecret = $('#id_client_secret').text().slice(1, -1);
 var stripe = Stripe(stripePublicKey);
 var elements = stripe.elements();
-
 var style = {
     base: {
         color: '#000',
@@ -26,10 +25,8 @@ var style = {
         iconColor: '#dc3545'
     }
 };
-
-var card = elements.create('card', {style: style});
+var card = elements.create('card', { style: style });
 card.mount('#card-element');
-
 
 // Handle realtime validation errors on the card element
 card.addEventListener('change', function (event) {
@@ -37,7 +34,7 @@ card.addEventListener('change', function (event) {
     if (event.error) {
         var html = `
             <span class="icon" role="alert">
-                <i class="fas fas-times"></i>
+                <i class="fas fa-times"></i>
             </span>
             <span>${event.error.message}</span>
         `;
